@@ -12,28 +12,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 @Data
 @Builder
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
+
     @Id
     @GeneratedValue
     private UUID id;
+
     private String name;
     private String description;
     private float price;
     private String imageUrl;
     private boolean availability;
+
     @Enumerated(EnumType.STRING)
     private Category category;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
-    @Column(name = "reviews")
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "order_id")
     private Orderr order;

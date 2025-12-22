@@ -18,9 +18,11 @@ public class Review {
     @Id
     @GeneratedValue
     private UUID id;
+
     private String comment;
     private int rating;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Product product;
 }

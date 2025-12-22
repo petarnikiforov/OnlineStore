@@ -21,17 +21,21 @@ public class Orderr {
     @Id
     @GeneratedValue
     private UUID id;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonIgnore
-    @Column(name = "products")
     @Builder.Default
     private List<Product> products = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    // останалите връзки могат да останат засега, но LAZY е по-добре:
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private History history;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Cart cart;
+
     private double totalAmount;
     private LocalDateTime orderDate;
 }
