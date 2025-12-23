@@ -11,4 +11,5 @@ public interface ProductMapper{
     ProductDto requestToDto(ProductRequest productRequest);
     Product dtoToModel(ProductDto productDto);
     ProductResponse modelToResponse(Product product);
+    ProductDetailsResponse modelToDetailsResponse(Product product);
 }

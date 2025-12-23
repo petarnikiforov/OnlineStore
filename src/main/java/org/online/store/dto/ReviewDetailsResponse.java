@@ -8,8 +8,10 @@
 //import java.util.UUID;
 //@Data
 //@Builder
-//public class ReviewResponse {
+//public class ReviewDetailsResponse {
 //    private UUID id;
 //    private String comment;
 //    private int rating;
+//    private UserResponse user;
+//    private ProductResponse product;
 //}

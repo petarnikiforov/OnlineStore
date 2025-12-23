@@ -53,9 +53,13 @@ public class ProductService {
         Product product = findById(id);
         return productMapper.modelToResponse(product);
     }
-    public ProductResponse updateFields(UUID id, UserDto userDto){
+    public ProductDetailsResponse getToDetailsResponse(UUID id) {
+        Product product = findById(id);
+        return productMapper.modelToDetailsResponse(product);
+    }
+    public ProductResponse updateFields(UUID id, ProductDto productDto){
         Product existingProduct = findById(id);
-        BeanUtils.copyProperties(userDto, existingProduct);
+        BeanUtils.copyProperties(productDto, existingProduct);
         return productMapper.modelToResponse(existingProduct);
     }
 

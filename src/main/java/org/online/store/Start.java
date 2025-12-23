@@ -1,7 +1,6 @@
 package org.online.store;
 
 import org.online.store.models.Cart;
-import org.online.store.models.Orderr;
 import org.online.store.models.Userr;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +16,6 @@ public class Start {
         Cart cart = user.getCart();
         if(cart!= null){
             System.out.println("Cart not NULL!");
-        }
-        Orderr order = cart.getOrder();
-        if(order != null){
-            System.out.println("Order ==== null");
         }
     }
 }

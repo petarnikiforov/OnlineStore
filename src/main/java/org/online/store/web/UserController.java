@@ -43,8 +43,12 @@ public class UserController {
     @DeleteMapping("all")
     public void deleteAll(){userService.deleteAll();}
     @PatchMapping("/{userId}")
-    public ResponseEntity<CartResponse> putProductToTheCart(@PathVariable UUID userId, @RequestBody ProductIdsDto productIdsDto){
-       return ResponseEntity.ok(userService.putProductsInCart(userId, productIdsDto));
+    public void putProductToTheCart(@PathVariable UUID userId, @RequestBody ProductDto productDto){
+       userService.putProductInCart(userId, productDto);
+    }
+    @GetMapping("/{userId}")
+    public CartDetailsResponse getCart(@PathVariable UUID userId){
+        return userService.getCart(userId);
     }
 
 }

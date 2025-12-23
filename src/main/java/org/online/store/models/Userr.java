@@ -25,14 +25,14 @@ public class Userr {
     private String email;
     private String fullName;
     private Gender gender;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-    @Builder.Default
-    private History history = new History();
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @Builder.Default
+//    private History history = new History();
 //    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JsonIgnore
 //    private List<Orderr> orders;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     @Builder.Default
     private Cart cart = new Cart();

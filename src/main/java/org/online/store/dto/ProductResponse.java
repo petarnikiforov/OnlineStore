@@ -1,9 +1,8 @@
 package org.online.store.dto;
-
 import lombok.Builder;
 import lombok.Data;
 import org.online.store.enums.Category;
-
+import java.util.List;
 import java.util.UUID;
 @Data
 @Builder

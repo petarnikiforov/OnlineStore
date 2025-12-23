@@ -32,13 +32,13 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
-    @Builder.Default
-    private List<Review> reviews = new ArrayList<>();
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @Builder.Default
+//    private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinColumn(name = "order_id")
-    private Orderr order;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinColumn(name = "order_id")
+//    private Orderr order;
 }

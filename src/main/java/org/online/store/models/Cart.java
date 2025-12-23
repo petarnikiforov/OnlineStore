@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -21,11 +22,10 @@ public class Cart {
     @GeneratedValue
     private UUID cartId;
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Builder.Default
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @NotNull
-    private Orderr order = new Orderr();
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Product> products;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Userr user;
 }

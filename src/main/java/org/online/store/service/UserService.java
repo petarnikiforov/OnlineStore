@@ -3,9 +3,9 @@ package org.online.store.service;
 import org.online.store.dto.*;
 import org.online.store.error.NotFoundObjectException;
 import org.online.store.mapper.CartMapper;
+import org.online.store.mapper.ProductMapper;
 import org.online.store.mapper.UserMapper;
 import org.online.store.models.Cart;
-import org.online.store.models.Orderr;
 import org.online.store.models.Product;
 import org.online.store.models.Userr;
 import org.online.store.repository.UserPagingRepository;
@@ -31,6 +31,8 @@ public class UserService {
     CartMapper cartMapper;
     @Autowired
     ProductService productService;
+    @Autowired
+    ProductMapper productMapper;
 
     public void saveUser(Userr user){
         userRepo.save(user);
@@ -61,20 +63,19 @@ public class UserService {
         Userr user = findById(id);
         return userMapper.modelToResponse(user);
     }
-    public CartResponse putProductsInCart(UUID userId, ProductIdsDto productIdsDto){
+    public void putProductInCart(UUID userId, ProductDto productDto){
         Userr user = findById(userId);
         Cart cart = user.getCart();
-        Orderr order = cart.getOrder();
-        if(order == null){
-            System.out.println("ORDERAAAA E NULLL !!!!");
-        }
-        List<Product> existingProducts = order.getProducts();
-        List<String> productIds = productIdsDto.getProductIds();
-        for(String Id : productIds){
-            existingProducts.add(productService.findById(UUID.fromString(Id)));
-        }
+        List<Product> products = cart.getProducts();
+        Product product = productMapper.dtoToModel(productDto);
+        products.add(product);
         saveUser(user);
-        return cartMapper.modelToResponse(cart);
+    }
+    public CartDetailsResponse getCart(UUID userId){
+        Userr user = findById(userId);
+        Cart cart = user.getCart();
+        return cartMapper.modelToDetailsResponse(cart);
+
     }
 
 }

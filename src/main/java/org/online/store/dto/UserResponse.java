@@ -1,14 +1,8 @@
 package org.online.store.dto;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Data;
 import org.online.store.enums.Gender;
-import org.online.store.models.Cart;
-import org.online.store.models.History;
+
 
 import java.util.UUID;
 @Data
@@ -20,6 +14,6 @@ public class UserResponse {
     private String email;
     private String fullName;
     private Gender gender;
-    private History history;
-    private Cart cart;
+//    private History history;
+    private UUID cartId;
 }

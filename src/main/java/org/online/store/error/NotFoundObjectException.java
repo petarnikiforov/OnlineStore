@@ -4,7 +4,7 @@ public class NotFoundObjectException extends RuntimeException{
     private final String objectClazz;
     private final String id;
 
-    public NotFoundObjectException(String objectClazz, String id, String message){
+    public NotFoundObjectException(String message, String objectClazz, String id){
         super(message);
         this.objectClazz = objectClazz;
         this.id = id;

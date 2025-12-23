@@ -8,11 +8,12 @@
 //import java.time.LocalDateTime;
 //import java.util.List;
 //import java.util.UUID;
+//
 //@Data
 //@Builder
-//public class OrderResponse {
+//public class OrderDetailsResponse {
 //    private UUID id;
-//    private List<UUID> productIds;
+//    private List<ProductResponse> products;
 //    private Userr user;
 //    private double totalAmount;
 //    private LocalDateTime orderDate;
