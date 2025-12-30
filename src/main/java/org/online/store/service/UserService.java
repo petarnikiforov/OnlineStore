@@ -49,8 +49,8 @@ public class UserService {
            throw new NotFoundObjectException("User not found!",Userr.class.getName(), id.toString());});
     }
 
-    public Page<Userr> fetchAll(int currentPage, int PageSize){
-        return userPagingRepo.findAll(PageRequest.of(currentPage,PageSize));
+    public Page<UserDetailsResponse> fetchAll(int currentPage, int PageSize){
+        return userPagingRepo.findAll(PageRequest.of(currentPage,PageSize)).map(userMapper::modelToDetailsResponse);
     }
     public UserResponse postToResponse(UserRequest userRequest){
         UserDto userDto = userMapper.requestToDto(userRequest);
@@ -63,19 +63,4 @@ public class UserService {
         Userr user = findById(id);
         return userMapper.modelToResponse(user);
     }
-    public void putProductInCart(UUID userId, ProductDto productDto){
-        Userr user = findById(userId);
-        Cart cart = user.getCart();
-        List<Product> products = cart.getProducts();
-        Product product = productMapper.dtoToModel(productDto);
-        products.add(product);
-        saveUser(user);
-    }
-    public CartDetailsResponse getCart(UUID userId){
-        Userr user = findById(userId);
-        Cart cart = user.getCart();
-        return cartMapper.modelToDetailsResponse(cart);
-
-    }
-
 }

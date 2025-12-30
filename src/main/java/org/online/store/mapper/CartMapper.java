@@ -1,6 +1,7 @@
 package org.online.store.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.online.store.dto.CartDetailsResponse;
 import org.online.store.dto.CartDto;
 import org.online.store.dto.CartResponse;

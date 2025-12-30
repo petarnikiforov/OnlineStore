@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 @Builder
 public class CartResponse {
-    private UUID id;
+    private UUID cartId;
     private UserResponse user;
     private List<ProductResponse> products;
 }

@@ -10,8 +10,8 @@ import java.util.UUID;
 public class UserDetailsResponse {
     private UUID id;
     private String username;
-    private String password;
     private String email;
     private String fullName;
     private Gender gender;
+    private UUID cartId;
 }

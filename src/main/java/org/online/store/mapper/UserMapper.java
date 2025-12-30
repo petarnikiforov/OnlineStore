@@ -6,11 +6,12 @@ import org.online.store.dto.*;
 import org.online.store.models.Userr;
 import org.springframework.stereotype.Component;
 
-@Mapper
+@Mapper(componentModel = "spring", uses = {CartMapper.class})
 @Component
 public interface UserMapper {
     UserDto requestToDto(UserRequest userRequest);
     Userr dtoToModel(UserDto userDto);
-    @Mapping(target = "id", source = "id")
     UserResponse modelToResponse(Userr user);
+    @Mapping(target = "cartId", source = "cart.cartId")
+    UserDetailsResponse modelToDetailsResponse(Userr user);
 }
