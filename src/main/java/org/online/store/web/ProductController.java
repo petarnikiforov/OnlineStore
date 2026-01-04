@@ -13,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -31,6 +34,11 @@ public class ProductController {
     public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest){
         ProductResponse productResponse = productService.postToResponse(productRequest);
         return ResponseEntity.status(201).body(productResponse);
+    }
+    @PostMapping(value = "/admin/import-csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> importCsv(@RequestParam("file") MultipartFile file) {
+        int created = productService .importFromCsv(file);
+        return ResponseEntity.ok(Map.of("created", created));
     }
     @GetMapping("{productId}")
     public ResponseEntity<ProductDetailsResponse> getById(@PathVariable UUID productId){

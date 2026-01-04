@@ -10,7 +10,7 @@ import java.util.UUID;
 @Data
 @Builder
 public class CartDetailsResponse {
-    private UUID cartId;
+    private UUID id;
     private UserResponse user;
-    private List<ProductResponse> products;
+    private List<CartItemDto> products;
 }

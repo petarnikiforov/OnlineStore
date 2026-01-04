@@ -1,6 +1,7 @@
 package org.online.store.service;
 
 import org.online.store.dto.*;
+import org.online.store.enums.Role;
 import org.online.store.error.NotFoundObjectException;
 import org.online.store.mapper.CartMapper;
 import org.online.store.mapper.ProductMapper;
@@ -55,6 +56,9 @@ public class UserService {
     public UserResponse postToResponse(UserRequest userRequest){
         UserDto userDto = userMapper.requestToDto(userRequest);
         Userr user = userMapper.dtoToModel(userDto);
+        if (user.getRole() == null) {
+            user.setRole(Role.ROLE_USER);
+        }
         saveUser(user);
         UserResponse userResponse = userMapper.modelToResponse(user);
         return userResponse;

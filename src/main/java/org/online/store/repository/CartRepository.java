@@ -8,5 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface CartRepository extends JpaRepository<Cart, UUID>, JpaSpecificationExecutor<Cart> {
+public interface CartRepository extends JpaRepository<Cart, UUID> {
+
 }

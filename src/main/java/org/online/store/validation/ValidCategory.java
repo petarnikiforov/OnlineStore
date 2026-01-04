@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidCategory {
     String message() default "Invalid category name";
-    String[] allowedCategories() default {"Food", "Housing", "Transport", "Healthcare", "Education", "Entertainment", "Bills", "Shopping"};
+    String[] allowedCategories() default {"FOOD", "HOUSECARE", "ZOOFOOD"};
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

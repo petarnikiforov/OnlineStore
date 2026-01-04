@@ -21,11 +21,11 @@ import java.util.UUID;
 public class Cart {
     @Id
     @GeneratedValue
-    private UUID cartId;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @NotNull
-    private List<Product> products = new ArrayList<Product>();
+    private UUID id;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> items = new ArrayList<>();
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Userr user;
