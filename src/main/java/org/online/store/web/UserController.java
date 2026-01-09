@@ -39,6 +39,16 @@ public class UserController {
         Page<UserDetailsResponse> userPage = userService.fetchAll(currentPage, PAGE_SIZE);
         return new CustomPage<>(userPage);
     }
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserResponse> updateProfile(@PathVariable UUID userId, @RequestBody UserUpdateRequest req) {
+        return ResponseEntity.ok(userService.updateProfile(userId, req));
+    }
+
+    @PatchMapping("/{userId}/password")
+    public ResponseEntity<Void> changePassword(@PathVariable UUID userId, @RequestBody ChangePasswordRequest req) {
+        userService.changePassword(userId, req);
+        return ResponseEntity.noContent().build();
+    }
     @DeleteMapping("/{userId}")
     public void deleteById(@PathVariable UUID userId){
         userService.deleteById(userId);

@@ -29,8 +29,9 @@ public class CartController {
 
     // ✅ запазваме го
     @GetMapping("/{userId}")
-    public CartDetailsResponse getCart(@PathVariable UUID userId) {
-        return cartService.getCart(userId);
+    public CartDetailsResponse getCart(@PathVariable UUID userId,
+                                       @RequestHeader(value = "Accept-Language", required = false) String lang) {
+        return cartService.getCart(userId, lang);
     }
 
     // ✅ НОВО: маха продукт от количката

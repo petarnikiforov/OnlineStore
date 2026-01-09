@@ -63,7 +63,7 @@ public class CartService {
 
     // ✅ getCart връща твоето CartDetailsResponse { cartId, user, products: [CartItemDto] }
     @Transactional(readOnly = true)
-    public CartDetailsResponse getCart(UUID userId) {
+    public CartDetailsResponse getCart(UUID userId, String lang) {
         Userr user = userService.findById(userId);
         Cart cart = user.getCart();
 
@@ -71,7 +71,7 @@ public class CartService {
 
         for (CartItem it : cart.getItems()) {
             CartItemDto dto = new CartItemDto();
-            dto.setProduct(productMapper.modelToResponse(it.getProduct())); // или modelToDto според mapper-а ти
+            dto.setProduct(productMapper.modelToResponse(it.getProduct(), lang)); // или modelToDto според mapper-а ти
             dto.setQty(it.getQty());
             out.add(dto);
         }

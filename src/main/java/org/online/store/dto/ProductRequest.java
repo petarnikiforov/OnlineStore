@@ -9,8 +9,12 @@ import java.util.UUID;
 @Data
 @Builder
 public class ProductRequest {
-    private String name;
-    private String description;
+    private String nameBg;
+    private String nameEn;
+    private String nameDe;
+    private String descriptionBg;
+    private String descriptionEn;
+    private String descriptionDe;
     private float oldPrice;
     private float price;
     private String imageUrl;

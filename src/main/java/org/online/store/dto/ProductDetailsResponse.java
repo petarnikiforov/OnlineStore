@@ -12,8 +12,12 @@ import java.util.UUID;
 @Builder
 public class ProductDetailsResponse {
     private UUID id;
-    private String name;
-    private String description;
+    private String nameBg;
+    private String nameEn;
+    private String nameDe;
+    private String descriptionBg;
+    private String descriptionEn;
+    private String descriptionDe;
     private float oldPrice;
     private float price;
     private String imageUrl;

@@ -12,6 +12,6 @@ public interface UserMapper {
     UserDto requestToDto(UserRequest userRequest);
     Userr dtoToModel(UserDto userDto);
     UserResponse modelToResponse(Userr user);
-    @Mapping(target = "cartId", source = "cart.cartId")
+    @Mapping(target = "id", source = "cart.id")
     UserDetailsResponse modelToDetailsResponse(Userr user);
 }

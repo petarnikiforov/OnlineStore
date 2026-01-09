@@ -16,5 +16,10 @@ public class OrderResponse {
     private UUID id;
     private float totalAmount;
     private LocalDateTime orderDate;
+    private String fullName;
+    private String phone;
+    private String email;
+    private String city;
+    private String address;
     private OrderStatus status;
 }

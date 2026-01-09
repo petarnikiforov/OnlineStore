@@ -23,6 +23,7 @@ public class OrderController {
     @PostMapping("checkout/{userId}")
     public ResponseEntity<OrderResponse> checkout(@PathVariable UUID userId,
                                                   @RequestBody ShippingInfo shippingInfo){
+        orderService.validateShipping(shippingInfo);
         OrderResponse created = orderService.checkout(userId, shippingInfo);
         return ResponseEntity.status(201).body(created);
     }
@@ -34,8 +35,9 @@ public class OrderController {
     // GET /orders/my/{userId}/{orderId}
     @GetMapping("/my/{userId}/{orderId}")
     public OrderDetailsResponse myOrderDetails(@PathVariable UUID userId,
-                                               @PathVariable UUID orderId) {
-        return orderService.getMyOrderDetails(userId, orderId);
+                                               @PathVariable UUID orderId,
+                                               @RequestHeader(value = "Accept-Language", required = false) String lang) {
+        return orderService.getMyOrderDetails(userId, orderId, lang);
     }
 
     // PATCH /orders/my/{userId}/{orderId}/cancel

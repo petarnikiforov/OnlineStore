@@ -23,10 +23,18 @@ public class Product {
     @Id
     @GeneratedValue
     private UUID id;
-    private String name;
-    private String description;
+    @Column(nullable = false)
+    private String nameBg;
+    @Column(nullable = false)
+    private String nameEn;
+    @Column(nullable = false)
+    private String nameDe;
+    private String descriptionBg;
+    private String descriptionEn;
+    private String descriptionDe;
     private float price;
     private float oldPrice;
+    @Column(name = "image_url", length = 2048)
     private String imageUrl;
     private boolean availability;
     private boolean hasPromotion;
@@ -35,14 +43,4 @@ public class Product {
     private Category category;
     @Enumerated(EnumType.STRING)
     private Subcategory subcategory;
-
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    @Builder.Default
-//    private List<Review> reviews = new ArrayList<>();
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    @JoinColumn(name = "order_id")
-//    private Orderr order;
 }

@@ -7,8 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(
-        name = "cart_items",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"cart_id", "product_id"})
+        name = "cart_items"
 )
 @Data
 public class CartItem {

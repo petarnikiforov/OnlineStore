@@ -12,8 +12,12 @@ import java.util.UUID;
 @Builder
 public class OrderDetailsResponse {
     private UUID id;
-    private Userr user;
     private List<OrderItemResponse> products;
     private double totalAmount;
+    private String fullName;
+    private String phone;
+    private String email;
+    private String city;
+    private String address;
     private LocalDateTime orderDate;
 }

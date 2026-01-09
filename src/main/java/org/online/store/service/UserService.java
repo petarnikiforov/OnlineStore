@@ -67,4 +67,30 @@ public class UserService {
         Userr user = findById(id);
         return userMapper.modelToResponse(user);
     }
+
+    public UserResponse updateProfile(UUID userId, UserUpdateRequest request){
+        Userr user = findById(userId);
+        if(request.getUsername() != null && !request.getUsername().isBlank()){
+            user.setUsername(request.getUsername());
+        }
+        if(request.getFullName() != null && !request.getFullName().isBlank()){
+            user.setFullName(request.getFullName());
+        }
+        if(request.getEmail() != null && !request.getEmail().isBlank()){
+            user.setEmail(request.getEmail());
+        }
+        if(request.getGender() != null){
+            user.setGender(request.getGender());
+        }
+        saveUser(user);
+        return userMapper.modelToResponse(user);
+    }
+
+    public void changePassword(UUID userId, ChangePasswordRequest request){
+        Userr user = findById(userId);
+        if (request.getPassword() == null || request.getPassword().trim().length() < 5) {
+            throw new IllegalStateException("Password must be at least 5 characters");
+        }
+        saveUser(user);
+    }
 }

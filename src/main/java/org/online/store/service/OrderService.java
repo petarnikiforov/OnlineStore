@@ -58,9 +58,11 @@ public class OrderService {
             OrderItem orderItem = OrderItem.builder()
                     .order(order)
                     .productId(p.getId())
-                    .productName(p.getName())
+                    .productNameBg(p.getNameBg())
+                    .productNameEn(p.getNameEn())
+                    .productNameDe(p.getNameDe())
                     .imageUrl(p.getImageUrl())
-                    .price(unitPrice)
+                    .unitPrice(unitPrice)
                     .quantity(qty)
                     .lineTotal(lineTotal)
                     .build();
@@ -77,7 +79,7 @@ public class OrderService {
         return orderMapper.modelToResponse(savedOrder);
     }
 
-    private void validateShipping(ShippingInfo s) {
+    public void validateShipping(ShippingInfo s) {
         if (s == null) throw new IllegalStateException("Shipping info is required");
         if (isBlank(s.getFullName())) throw new IllegalStateException("Full name is required");
         if (isBlank(s.getPhone())) throw new IllegalStateException("Phone is required");
@@ -97,14 +99,14 @@ public class OrderService {
                 .toList();
     }
 
-    public OrderDetailsResponse getMyOrderDetails(UUID userId, UUID orderId) {
+    public OrderDetailsResponse getMyOrderDetails(UUID userId, UUID orderId, String lang) {
         Orderr order = findById(orderId);
 
         if (!order.getUser().getId().equals(userId)) {
             throw new IllegalStateException("Order does not belong to this user");
         }
 
-        return orderMapper.modelToDetailsResponse(order);
+        return orderMapper.modelToDetailsResponse(order, lang);
     }
 
     public OrderResponse cancel(UUID userId, UUID orderId) {

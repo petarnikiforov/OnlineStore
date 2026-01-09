@@ -25,10 +25,11 @@ public class OrderItem {
 
     // snapshot на продукта към момента на покупката
     private UUID productId;
-    private String productName;
+    private String productNameBg;
+    private String productNameEn;
+    private String productNameDe;
     private String imageUrl;
-
-    private float price;
+    private float unitPrice;
     private int quantity;
     private double lineTotal;
 }
